@@ -66,11 +66,4 @@ public class PersonalInfo {
 		email = e;
 	}
 
-	public String toString() {
-		StringBuffer buffer = new StringBuffer();
-		buffer.append("First Name - " + getFirstName());
-
-		return buffer.toString();
-	}
-
 }

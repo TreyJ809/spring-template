@@ -53,11 +53,6 @@ public class Application {
             return HttpStatus.BAD_REQUEST;
         }
 
-        /*
-        return ResponseEntity
-            .created( URI.create(String.format("/person/%s", personalInfo.getFirstName())) )
-            .body(personalInfo);
-            */
     }
 
     //Callout to https://o3m5qixdng.execute-api.us-east-1.amazonaws.com/api/managers
@@ -72,7 +67,6 @@ public class Application {
 
             HttpResponse<String> response = HttpClient
                 .newBuilder()
-                //.proxy(ProxySelector.getDefault())
                 .build()
                 .send(request, BodyHandlers.ofString());
 
