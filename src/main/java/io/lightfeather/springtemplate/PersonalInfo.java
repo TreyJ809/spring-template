@@ -66,4 +66,8 @@ public class PersonalInfo {
 		email = e;
 	}
 
+	public String toString() {
+		return getSupervisor() + " " + getLastName() + " " + getFirstName() + " " + getPhoneNumber() + " " + getEmail();
+	}
+
 }

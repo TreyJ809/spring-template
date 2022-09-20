@@ -48,6 +48,7 @@ public class Application {
     public HttpStatus submit(@RequestBody PersonalInfo personalInfo) {
         
         if ( personalInfo.getFirstName() != null && personalInfo.getLastName() != null && personalInfo.getSupervisor() != null ) {
+            System.out.println(personalInfo.toString());
             return HttpStatus.ACCEPTED;
         } else {
             return HttpStatus.BAD_REQUEST;
