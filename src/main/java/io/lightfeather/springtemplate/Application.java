@@ -15,6 +15,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,13 +44,20 @@ public class Application {
         return supervisors;
     }
 
-    @PostMapping("/api/submit")
-    public String submit(@RequestBody String request) {
-        if ( request.contains("firstName=") && request.contains("lastName=") && request.contains("supervisor=") ) {
-            return request;
+    @PostMapping(value = "/api/submit", consumes = {"application/json", "application/xml"}, produces = {"application/json", "application/xml"} )
+    public HttpStatus submit(@RequestBody PersonalInfo personalInfo) {
+        
+        if ( personalInfo.getFirstName() != null && personalInfo.getLastName() != null && personalInfo.getSupervisor() != null ) {
+            return HttpStatus.ACCEPTED;
         } else {
-            return "Request is incomplete. Please include firstName, lastName, and supervisor";
+            return HttpStatus.BAD_REQUEST;
         }
+
+        /*
+        return ResponseEntity
+            .created( URI.create(String.format("/person/%s", personalInfo.getFirstName())) )
+            .body(personalInfo);
+            */
     }
 
     //Callout to https://o3m5qixdng.execute-api.us-east-1.amazonaws.com/api/managers

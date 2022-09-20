@@ -25,4 +25,8 @@ docker rm -f spring-template
 ```
 
 # Running with docker-compose
+docker-compose build
 docker-compose up
+
+# Sample POST request via Curl
+curl -H "Content-type:application/json"  -d "{\"firstName\" : \"John\", \"lastName\" : \"Smith\", \"supervisor\" : \"JohnSuper\"}" http://localhost:8080/api/submit
